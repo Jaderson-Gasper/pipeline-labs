@@ -34,7 +34,7 @@ jobs:
               - name: Variáveis e Contexto
                 run: |
                    echo "=== VARIÁVEIS E CONTEXTO ==="
-                   echo "Variáveis env: $(( env.NODE_VERSION }}"
-                   echo "Repositório: $ {{ github.repository }}"
+                   echo "Node: $NODE_VERSION"
+                   echo "Repositório: ${{ github.repository }}"
                    echo "Branch: ${{ github.ref_name }}"
-                   echo "Branco: ${{ github.actor }}"
+                   echo "Usuário: ${{ github.actor }}"
