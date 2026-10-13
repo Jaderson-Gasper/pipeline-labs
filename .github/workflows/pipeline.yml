@@ -1,40 +1,42 @@
+
 name: "Estrutura de Diretórios e Arquivos"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
-  
+
 env:
   NODE_VERSION: '18'
 
 jobs:
-        demonstrando-estrutura: 
-            name: "Demonstrando Estrutura Básica"
-            runs-on: ubuntu-latest
+  demonstrando-estrutura:
+    name: "Demonstrando Estrutura Básica"
+    runs-on: ubuntu-latest
 
-            steps:
-              - name: Checkout do Código
-                uses: actions/checkout@v4
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
 
-              - name: Mostrar estrutura .github/workflows
-                run: |
-                    echo " == ESTRUTURA DE DIRETÓRIOS E ARQUIVOS .github/workflows == "
-                    ls -la .github/workflows
-                    echo ""
-                    echo " Total de workflows: $(ls -1 .github/workflows/*y*ml 2>/dev/null | wc -l) "
-                
-              - name: Elementos obrigatórios do workflow
-                run: |
-                    echo "=== ELEMENTOS OBRIGATÓRIOS ==="
-                    echo "1. name: Nome do workflow"
-                    echo "2. on: Evento que dispara o workflow"
-                    echo "3. jobs: Eventos de trigger (push, workflow_dispatch)"
+      - name: Mostrar estrutura .github/workflows
+        run: |
+          echo "== ESTRUTURA DE DIRETÓRIOS E ARQUIVOS =="
+          ls -la .github/workflows
+          echo ""
+          echo "Total de workflows:"
+          find .github/workflows -maxdepth 1 -type f \
+            \( -name '*.yml' -o -name '*.yaml' \) | wc -l
 
-              - name: Variáveis e Contexto
-                run: |
-                   echo "=== VARIÁVEIS E CONTEXTO ==="
-                   echo "Node: $NODE_VERSION"
-                   echo "Repositório: ${{ github.repository }}"
-                   echo "Branch: ${{ github.ref_name }}"
-                   echo "Usuário: ${{ github.actor }}"
+      - name: Elementos do workflow
+        run: |
+          echo "1. name: Nome do workflow"
+          echo "2. on: Eventos que disparam o workflow"
+          echo "3. jobs: Trabalhos executados pelo workflow"
+
+      - name: Variáveis e Contexto
+        run: |
+          echo "=== VARIÁVEIS E CONTEXTO ==="
+          echo "Node: $NODE_VERSION"
+          echo "Repositório: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Usuário: ${{ github.actor }}"
