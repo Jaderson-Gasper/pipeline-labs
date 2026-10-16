@@ -1,42 +1,31 @@
-
-name: "Estrutura de Diretórios e Arquivos"
+name: Push Trigger Workflow
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
-
-env:
-  NODE_VERSION: '18'
+    branches:
+      - main
+      - develop
+    paths:
+      - 'src/**' ## CRIAR ESSES ARQUVIOS PARA FUNCIONAR
+      - 'README.md' ## CRIAR ESSES ARQUVIOS PARA FUNCIONAR
 
 jobs:
-  demonstrando-estrutura:
-    name: "Demonstrando Estrutura Básica"
+  push-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do Código
-        uses: actions/checkout@v4
+    - name: Checkout código
+      uses: actions/checkout@v4
 
-      - name: Mostrar estrutura .github/workflows
-        run: |
-          echo "== ESTRUTURA DE DIRETÓRIOS E ARQUIVOS =="
-          ls -la .github/workflows
-          echo ""
-          echo "Total de workflows:"
-          find .github/workflows -maxdepth 1 -type f \
-            \( -name '*.yml' -o -name '*.yaml' \) | wc -l
+    - name: Informação do Push
+      run: |
+        echo "Workflow disparado por PUSH"
+        echo "Commit: ${{ github.sha }}"
+        echo "Autor: ${{ github.actor }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Repositório: ${{ github.repository }}"
 
-      - name: Elementos do workflow
-        run: |
-          echo "1. name: Nome do workflow"
-          echo "2. on: Eventos que disparam o workflow"
-          echo "3. jobs: Trabalhos executados pelo workflow"
-
-      - name: Variáveis e Contexto
-        run: |
-          echo "=== VARIÁVEIS E CONTEXTO ==="
-          echo "Node: $NODE_VERSION"
-          echo "Repositório: ${{ github.repository }}"
-          echo "Branch: ${{ github.ref_name }}"
-          echo "Usuário: ${{ github.actor }}"
+    - name: Listar arquivos modificados
+      run: |
+        echo "Arquivos no repositório:"
+        ls -la
