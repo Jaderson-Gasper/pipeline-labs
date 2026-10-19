@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: Checkout código
-      uses: action/checkout@v4
+      uses: actions/checkout@v4
     
     - name: Configurar ambiente de testes
       run: |
@@ -75,7 +75,7 @@ jobs:
     - name: Compilar aplicação
       run: |
         echo "Compilando aplicação..."
-        slepp 5
+        sleep 5
         echo "Build concluído com sucesso"
 
     - name: Gerar artefatos
