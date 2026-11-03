@@ -23,7 +23,7 @@ jobs:
         exclude:
           # Excluir combinações problemáticas
           - os: windows-latest
-            node-verision: 16
+            node-version: 16
     
     steps:
     - name: Checkout código
@@ -35,19 +35,19 @@ jobs:
         echo "Node: ${{ matrix.node-version }}"
         echo "Experimental: ${{ matrix.experimental }}"
     
-    - name: Setupo Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
     - name: Verificar versões
       run: |
-        echo: "Node version: $(node --version)"
-        echo "NPM version: $(nps --version)"
+        echo "Node version: $(node --version)"
+        echo "NPM version: $(npm --version)"
       
     - name: Executar testes especificos do OS
       run: |
-        echo "Executanto testes no ${{ matrix.os }}"
+        echo "Executando testes no ${{ matrix.os }}"
         sleep 2
         echo "Testes concluídos"
 
@@ -59,7 +59,7 @@ jobs:
         echo "Testes experimentais concluídos"
 
   # Job que coleta resultados da matrix
-  collet-results:
+  collect-results:
     runs-on: ubuntu-latest
     needs: test-matrix
 
