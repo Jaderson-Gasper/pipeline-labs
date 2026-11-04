@@ -101,6 +101,6 @@ jobs:
         echo "Este step executa apenas se houver falha"
 
     - name: Cleanup
-      if: always()
+      if: always() ##adicionar comentário
       run: |
         echo "Limpeza final sempre executada"
