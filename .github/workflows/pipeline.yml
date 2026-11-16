@@ -7,7 +7,7 @@ on:
       - main
   workflow_dispatch:
 
-# Variáveis de ambiente no nível de WORKFLOW
+# Variáveis de ambiente no nível de WORKFLO
 env:
   WORKFLOW_VAR: "Variável definida no nível do workflow"
   AMBIENTE: "producao"
