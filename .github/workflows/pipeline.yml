@@ -40,7 +40,7 @@ jobs:
           echo "Senha: $DB_PASSWORD"
           echo "Observe que a senha será mascara nos logs!"
       
-      # Step 4: Usar secret em um de deploy
+      # Step 4: Usar secret em um de deployy
       - name: Preparar deploy com token
         env: 
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
